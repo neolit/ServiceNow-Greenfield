@@ -1,0 +1,9 @@
+function myFunction(){
+  var arrUsers = [];
+  gr = new GlideRecord('u_intensive_care');
+  gr.query();
+  while (gr.next()){
+    arrUsers.push(gr.u_customer.toString());
+  }
+  return arrUsers;
+}
