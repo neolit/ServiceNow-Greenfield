@@ -1,0 +1,16 @@
+// Business Rule condition
+current.variables.requested_for != Undefined
+
+
+// script
+var userID = current.variables.requested_for;
+
+if(userID != null || userID != '') {
+
+var rc = new GlideRecord('sc_request');
+rc.get(current.getValue('parent'));
+rc.requested_for = userID;
+rc.setWorkflow(false);
+rc.update();
+
+}
