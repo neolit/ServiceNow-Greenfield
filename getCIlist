@@ -1,0 +1,21 @@
+getCIlist: function() {  
+		var answer = '';
+		var caller = current.variables.caller_id; 
+		var ci = new GlideRecord('cmdb_ci'); 
+		ci.addQuery('assigned_to', caller.sys_id); 
+		ci.query(); 
+		while (ci.next()) { 
+			if (answer.length > 1) {
+				answer += (',' + ci.sys_id.toString());
+			} 
+			else { 
+				answer = '' + ci.sys_id.toString();
+			} 
+		} 
+
+		if(answer == ''){
+			return 'sys_id=0';
+
+		}
+		return 'sys_idIN' + answer; 
+	},
